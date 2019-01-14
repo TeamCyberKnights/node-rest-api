@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 
 // Connect to mysql
 
-const sequelize =  new Sequelize( 'qdemy','root','123456',{
+const sequelize =  new Sequelize( 'qdemy','root','root',{
     host: 'localhost',
     dialect: 'mysql',
     define : {
