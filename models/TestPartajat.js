@@ -3,16 +3,18 @@ const DataTypes = require('sequelize/lib/data-types')
 const sequelize =  require('../config/db-connection').sequelize
 
 const TestPartajat = sequelize.define('test_partajat', {
-    id_test_partajat: {
+    id: {
         primaryKey: true,
         autoIncrement: true,
         type: Sequelize.INTEGER
     },
-    id_test: {
-        type: Sequelize.INTEGER
+    testId: {
+        type: Sequelize.INTEGER,
+        allowNull:false
     },
-    id_profesor: {
-        type: Sequelize.INTEGER
+    profesorId: {
+        type: Sequelize.INTEGER,
+        allowNull:false
     }
 })
 

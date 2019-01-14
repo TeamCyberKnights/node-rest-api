@@ -2,12 +2,12 @@ const Sequelize = require('sequelize')
 const DataTypes = require('sequelize/lib/data-types')
 const sequelize =  require('../config/db-connection').sequelize
 
-const Intrebare = require('./Intrebare')
-const TestSustinut = require('./TestSustinut')
+const IntrebareGrila = require('./IntrebareGrila')
+//const TestSustinut = require('./TestSustinut')
 const TestPartajat = require('./TestPartajat')
 
 const Test = sequelize.define('test', {
-    id_test: {
+    id: {
         primaryKey: true,
         autoIncrement: true,
         type: Sequelize.INTEGER
@@ -16,21 +16,25 @@ const Test = sequelize.define('test', {
         type: Sequelize.STRING
     },
     descriere : {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull:false
     },
     timp_disponibil : {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull:false
     },
-    este_public : {
-        type: Sequelize.BOOLEAN
+    estePublic : {
+        type: Sequelize.BOOLEAN,
+        allowNull:false
     },
-    id_materie : {
-        type: Sequelize.INTEGER
+    materie : {
+        type: Sequelize.STRING,
+        allowNull:false
     }
 
 })
 
-Test.hasMany(Intrebare,{foreignKey: 'id_intrebare', sourceKey: 'id_test',foreignKeyConstraint: true})
-Test.hasMany(TestSustinut,{foreignKey: 'id_test_sustinut', sourceKey: 'id_test',foreignKeyConstraint: true})
-Test.hasMany(TestPartajat,{foreignKey: 'id_test_partajat', sourceKey: 'id_test',foreignKeyConstraint: true})
+//Test.hasMany(IntrebareGrila,{foreignKey: 'testId', sourceKey: 'id',foreignKeyConstraint: true})
+
+Test.hasMany(TestPartajat,{foreignKey: 'testId', sourceKey: 'id',foreignKeyConstraint: true})
 module.exports =  Test

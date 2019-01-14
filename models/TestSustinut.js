@@ -1,22 +1,22 @@
 const Sequelize = require('sequelize')
 const DataTypes = require('sequelize/lib/data-types')
 const sequelize =  require('../config/db-connection').sequelize
-const RaspunsStudent = require('./RaspunsStudent')
+const RaspunsStudent = require('./RaspunsIntrebareGrila')
 const Student = require('./Student')
+
+const RezultatTestStudent= require('./RezultatTestStudent')
 const TestSustinut = sequelize.define('test_sustinut', {
-    id_test_sustinut: {
+    id: {
         primaryKey: true,
         autoIncrement: true,
         type: Sequelize.INTEGER
     },
-    inceput_la: {
-        type: Sequelize.DATE
-    },
-    terminat_la: {
-        type: Sequelize.DATE
+    profesorId: {
+        type: Sequelize.INTEGER,
+        allowNull: false
     }
 })
-TestSustinut.belongsTo(Student, { foreignKey: 'id_student' })
-TestSustinut.hasMany(RaspunsStudent, {foreignKey: 'id_raspuns_student', sourceKey: 'id_test_sustinut',foreignKeyConstraint: true})
+
+TestSustinut.hasMany(RezultatTestStudent, {foreignKey: 'testSustinutId', sourceKey: 'id',foreignKeyConstraint: true})
 module.exports = TestSustinut
 

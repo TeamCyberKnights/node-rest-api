@@ -5,13 +5,14 @@ const sequelize =  require('../config/db-connection').sequelize
 
 const Echipa = sequelize.define('echipa', {
 
-    id_echipa : {
+    id : {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
     nume: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull:false
     }
 })
 

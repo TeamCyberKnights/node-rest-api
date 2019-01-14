@@ -12,8 +12,8 @@ opts.secretOrKey = keys.secretOrKey
 
 module.exports = (passport)  =>  {
     passport.use(new JwtStrategy(opts, (jwtPayload, done) => {
-        if (jwtPayload.teacher==true) {
-            Profesor.findOne({where: {id_profesor: jwtPayload.id_profesor}})
+        if (jwtPayload.profesor==true) {
+            Profesor.findOne({where: {id: jwtPayload.id}})
                 .then(profesor => {
                     if (profesor) {
                         return done(null, profesor)
@@ -21,8 +21,8 @@ module.exports = (passport)  =>  {
                 })
                 .catch(err => console.log(err))
         }
-        else if (jwtPayload.teacher==false) {
-            Student.findOne({ where:{id_student: jwtPayload.id_student}})
+        else if (jwtPayload.profesor==false) {
+            Student.findOne({ where:{id: jwtPayload.id}})
                 .then(student => {
                     if (student) {
                         console.log(student)
